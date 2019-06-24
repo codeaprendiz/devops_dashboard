@@ -1,0 +1,67 @@
+***** To get all the ASSEMBLIES
+curl -u asr000p:wHat@123 -H "Content-Type:application/json" -H "Accept:application/json" https://cloud.prod.company.com/ukgrsps/assemblies
+
+
+***To get all the ENVIRONMENTS
+curl -u asr000p:wHat@123 -H "Content-Type:application/json" -H "Accept:application/json" https://cloud.prod.company.com/ukgrsps/assemblies/order-delivery/transition/environments
+
+****To get all the PLATFORMS
+curl -u username:password -H "Content-Type:application/json" -H "Accept:application/json" https://cloud.prod.company.com/ukgrsps/assemblies/commerce/transition/environments/qa5/platforms
+
+****To get all the COMPONENTS
+curl -u username:password -H "Content-Type:application/json" -H "Accept:application/json" https://cloud.prod.company.com/ukgrsps/assemblies/commerce/transition/environments/prod/platforms/commerceApp/components
+
+
+****To get all the HOSTNAMES
+curl  -u username:password https://cloud.prod.company.com/ukgrsps/assemblies/commerce/operations/environments/prod/platforms/commerceApp/components/hostname/instances.json?instances_state=all
+
+
+curl -u asr000p:wHat@123 https://cloud.prod.company.com/ukgrsps/assemblies/grocery-search/operations/environments/pqa/platforms/search-app-server/components/hostname/instances.json?instances_state=all
+
+
+curl -v "http://asda-reports.company.com/PROD/compute.html" > /tmp/2.txt
+
+cat /tmp/2.txt| grep recipes-service | awk -F ',' '{print $1 "--" $2 "--------" $5}'
+
+cat /tmp/2.txt | awk -F ',' '{print $1 "--" $2 "--" $3 "--" $4 "--" $5 "--" $6 "--" $7 "--" $8 "--" $9 "--" $10 "--" $11 "--" $12 "--" $13 "--"  $14}' | grep "\'\]$" 
+
+str=content[0].replace("[","").replace("]","").split("--")
+
+
+with open("/tmp/python.txt") as f:
+  content = f.readlines()
+
+content = [x.strip() for x in content]
+
+for line in content:
+  for obj in line:
+    print(obj)
+
+dict={}
+list=[]
+
+for line in content:
+  obj=line.replace("[","").replace("]","").split("--")
+  for str1 in obj:
+    list.append(str1.replace("'","").strip())  
+
+
+
+----------------------
+url_env="https://cloud.prod.company.com/{organization}/assemblies/{assembly}/transition/environment"
+url_host="https://cloud.prod.company.com/{organization}/assemblies/{assembly}/operations/environments/{environment}/platforms/{platform}/components/{component}/instances.json?instances_state=all"
+username="asr000p"
+password="wHat@123"
+url_assembly="https://cloud.prod.company.com/{organization}/assemblies"
+url_platform="https://cloud.prod.company.com/{organization}/assemblies/{assembly}/transition/environments/{environment}/platforms"
+
+
+import json
+import requests
+auth=(username,password)
+h = {"Content-Type" : "application/json", "Accept" : "application/json"}
+responseObj = requests.get(url, auth=auth, headers=h)
+
+
+
+

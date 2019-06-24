@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title> </title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+      {% load static %}
+      <!--
+
+      -->
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/jquery.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/jquery.dropotron.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/jquery.scrollgress.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/jquery.scrolly.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/jquery.slidertron.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/skel.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/skel-layers.min.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/init.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/progressBar.js' %}"></script>
+      <script type="text/javascript" src="{% static '/splunkAutomation/theme2/js/loader.js' %}"></script>
+      <script>
+
+         $(document).ready(function() {
+           $.ajaxSetup({ cache: false }); // This part addresses an IE bug.  without it, IE will only load the first number and will never refresh
+           var my_refresh = setInterval(function() {
+             $('#output_box').load('/splunkAutomation/get_hostname_output_log/', function( response, status, xhr ) {
+               if ( xhr.status == 404) {
+                 clearInterval(my_refresh);
+                 //var msg = "End of testing.";
+                 //$( "#output_box" ).html( msg);
+               }else if ( status == "error") {
+                 clearInterval(my_refresh);
+                 var msg = "Sorry but there was an error: [";
+                 $( "#error" ).html( msg + xhr.status + "] " + xhr.statusText );
+               }
+
+             });
+           }, 3000); // the "1000"
+
+           $('#form').on('submit', function (e) {
+             e.preventDefault();
+             var my_refresh = start_refreshing_output_box(interval)
+            });
+
+         });
+
+      </script>
+      <!-- 
+         <link rel="stylesheet" type="text/css" href="{% static '/SplunkAutomation/Theme2/css/style.css' %}" />
+         <link rel="stylesheet" type="text/css" href="{% static '/SplunkAutomation/Theme2/css/skel.css' %}" />
+         -->
+      {% load static %}
+      <link rel="stylesheet" type="text/css" href="{% static '/splunkAutomation/theme2/css/custom.css' %}" />
+      
+   </head>
+   <body onload="myFunction()" style="margin:0;">
+      <!-- Header -->
+      <header id="header" class="skel-layers-fixed">
+         <h1><a href="index.html">ASDA DevOps Dashboard <span> by DevOps Team</span></a></h1>
+         <nav id="nav">
+            <ul>
+               <li><a href="{% url 'splunkAutomation:url_for_theme2_index_page' %}">Home</a></li>
+               <li>
+                  <a href="" class="icon fa-angle-down">Layouts</a>
+                  <ul>
+                     <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                     <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                     <li><a href="no-sidebar.html">No Sidebar</a></li>
+                     <li><a href="no-sidebar.html">Random</a></li>
+                     <li>
+                        <a href="">Submenu</a>
+                        <ul>
+                           <li><a href="#">Option 1</a></li>
+                           <li><a href="#">Option 2</a></li>
+                           <li><a href="#">Option 3</a></li>
+                           <li><a href="#">Option 4</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li><a href="elements.html">Elements</a></li>
+            </ul>
+         </nav>
+      </header>
+      <!-- Main -->
+      <section id="main" class="wrapper style1">
+
+
+      
+      
+
+         <div class="container">
+				<!-- Table -->
+                                 
+            </br></br></br>         
+
+            <div id="loader"></div>
+
+               <h3>Console Output</h3>
+               <div id="output_box"></div>
+               <h3>Errors</h3>
+               <div id="error"></div>
+            </div>
+
+         </div>                                         
+      <!-- Footer -->
+
+      
+   </body>
+</html>
