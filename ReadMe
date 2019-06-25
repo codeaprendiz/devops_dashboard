@@ -8,3 +8,6 @@ Prerequisites
 4) Python 3.5
 5) sudo apt install python3-pip  (pip3)
 6) pip3 install Django
+7) pip3 install celery
+8) pip3 install django-celery
+9) pip3 install splunk-sdk
