@@ -1,0 +1,10 @@
+Stepts to get it running on linux machine
+
+Prerequisites
+
+1) sudo apt-get install git
+2) git clone REPOSITORY_URL
+3) Django 2.2
+4) Python 3.5
+5) sudo apt install python3-pip  (pip3)
+6) pip3 install Django
