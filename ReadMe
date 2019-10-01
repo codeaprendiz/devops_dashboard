@@ -11,3 +11,4 @@ Prerequisites
 7) pip3 install celery
 8) pip3 install django-celery
 9) pip3 install splunk-sdk
+10)
